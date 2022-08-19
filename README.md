@@ -10,4 +10,4 @@ Tarea 3 - Creación de un repositorio de ejemplo dentro de la organización, don
 |   Diego Alberto Gallego Jiménez   |        |
 |    Yinneth Paola Peña Fonseca     |        |
 |    John Henry Rincón Gutiérrez    |   ✅    |
-|Johao Durán|        |
+|Johao Durán|    ✅    |
