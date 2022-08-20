@@ -8,6 +8,6 @@ Tarea 3 - Creación de un repositorio de ejemplo dentro de la organización, don
 |:---------------------------------:|--------|
 |Jefry Nicolas Chicaiza Carrasquilla|    ✅  |
 |   Diego Alberto Gallego Jiménez   |    ✅    |
-|    Yinneth Paola Peña Fonseca     |        |
+|    Yinneth Paola Peña Fonseca     |   ✅     |
 |    John Henry Rincón Gutiérrez    |   ✅    |
 |Johao Durán|    ✅    |
