@@ -12,15 +12,14 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class FinancerController {
-  Enterprise enterprise;
   FinancerService financerService;
 
-  public FinancerController(Enterprise enterprise) {
-    this.enterprise = enterprise;
+  public FinancerController() {
+    this.financerService = new FinancerService();
   }
 
   @GetMapping("/enterprises")
   public List<Enterprise> EnterpriseList() {
-    return financerService.getEnterpriseList();
+    return this.financerService.getEnterpriseList();
   }
 }

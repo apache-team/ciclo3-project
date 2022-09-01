@@ -16,6 +16,8 @@ public class FinancerService {
   Enterprise enterprise2 = new Enterprise("Google", "8765", "23456", "calle 2");
   List<Enterprise> enterprises = new ArrayList<>();
 
+  public FinancerService() {}
+
   public List<Enterprise> getEnterpriseList() {
     enterprises.add(enterprise1);
     enterprises.add(enterprise2);
