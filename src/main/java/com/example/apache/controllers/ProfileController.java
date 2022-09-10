@@ -1,12 +1,11 @@
 package com.example.apache.controllers;
 import com.example.apache.entities.Profile;
+import com.example.apache.entities.User;
 import com.example.apache.services.ProfileService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class ProfileController {
@@ -24,5 +23,22 @@ public class ProfileController {
     @PostMapping(value = "/profiles", consumes = {"application/json"})
     public Profile createProfile(@RequestBody Profile profile){
         return this.service.createProfile(profile);
+    }
+
+    @GetMapping("/profiles/{id}")
+    public Optional<Profile> GetId(@PathVariable("id") Long id){
+        return this.service.getId(id);
+    }
+
+    @DeleteMapping("/profiles/{id}")
+    public String DeleteId(@PathVariable("id") Long id){
+
+        this.service.deleteId(id);
+        return "Registro eliminado con exito";
+    }
+
+    @PutMapping("/profiles/{id}")
+    Optional<Profile> replaceUser(@RequestBody Profile newData, @PathVariable Long id) {
+        return this.service.updateID(newData,id);
     }
 }

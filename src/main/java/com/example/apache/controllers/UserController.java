@@ -2,12 +2,10 @@ package com.example.apache.controllers;
 
 import com.example.apache.entities.User;
 import com.example.apache.services.UserService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserController {
@@ -26,5 +24,22 @@ public class UserController {
     @PostMapping("/users")
     public User createUser(@RequestBody User user){
         return this.services.createUser(user);
+    }
+
+    @GetMapping("/users/{id}")
+    public Optional<User> UserId(@PathVariable("id") Long id){
+        return this.services.getUserId(id);
+    }
+
+    @DeleteMapping("/users/{id}")
+    public String DeleteId(@PathVariable("id") Long id){
+
+        this.services.deleteUserId(id);
+        return "Usuario fue eliminado con exito";
+    }
+
+    @PutMapping("/users/{id}")
+    Optional<User> replaceUser(@RequestBody User newUser, @PathVariable Long id) {
+        return this.services.updateID(newUser,id);
     }
 }

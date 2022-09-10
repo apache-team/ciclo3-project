@@ -1,12 +1,10 @@
 package com.example.apache.controllers;
 import com.example.apache.entities.Employee;
 import com.example.apache.services.EmployeeService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class EmployeeController {
@@ -24,5 +22,22 @@ public class EmployeeController {
     @PostMapping(value = "/employee", consumes = {"application/json"})
     public Employee createEmployee(@RequestBody Employee employee){
         return  this.service.createEmployee(employee);
+    }
+
+    @GetMapping("/employee/{id}")
+    public Optional<Employee> getId(@PathVariable("id") Long id){
+        return this.service.getId(id);
+    }
+
+    @DeleteMapping("/employee/{id}")
+    public String DeleteId(@PathVariable("id") Long id){
+
+        this.service.deleteId(id);
+        return "Registro eliminado con exito";
+    }
+
+    @PutMapping("/employee/{id}")
+    Optional<Employee> replaceUser(@RequestBody Employee newData, @PathVariable Long id) {
+        return this.service.updateID(newData,id);
     }
 }

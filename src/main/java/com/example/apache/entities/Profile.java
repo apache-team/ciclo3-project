@@ -12,7 +12,7 @@ import java.time.LocalDate;
 public class Profile {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;
+    private Long id;
 
     @Column(name = "image")
     private String image;
@@ -22,7 +22,7 @@ public class Profile {
 
     @OneToOne
     @JoinColumn(name = "user_id")
-    @JsonBackReference(value = "user-profile")
+    @JsonManagedReference(value = "user-profile")
     private User user;
 
     @Column(name = "createdAt")
@@ -38,7 +38,7 @@ public class Profile {
     public Profile(){
     }
 
-    public Profile(Integer id, String image, String phone, User user, LocalDate createdAt, LocalDate updatedAt, Employee employee) {
+    public Profile(Long id, String image, String phone, User user, LocalDate createdAt, LocalDate updatedAt, Employee employee) {
         this.id = id;
         this.image = image;
         this.phone = phone;
@@ -56,7 +56,7 @@ public class Profile {
         this.employee = employee;
     }
 
-    public Integer getId() {
+    public Long getId() {
         return id;
     }
 
@@ -80,7 +80,7 @@ public class Profile {
         return updatedAt;
     }
 
-    public void setId(Integer id) {
+    public void setId(Long id) {
         this.id = id;
     }
 

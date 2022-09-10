@@ -1,5 +1,6 @@
 package com.example.apache.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 import javax.persistence.*;
@@ -18,8 +19,8 @@ public class User {
     @Column(name = "fullName")
     private String fullName;
 
-    @OneToOne(mappedBy = "user")
-    @JsonManagedReference(value = "user-profile")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
+    @JsonBackReference(value = "user-profile")
     private Profile profile;
 
     public User(){
