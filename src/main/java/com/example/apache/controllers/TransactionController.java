@@ -42,4 +42,13 @@ public class TransactionController {
         return this.service.updateID(newData,id);
     }
 
+    @PatchMapping(
+            path = "/transaction/{id}",
+            consumes = {"application/json"})
+    public String update(@RequestBody Transaction newData, @PathVariable("id") Long id) {
+        this.service.updateTransaction(newData, id);
+        return "Registro actualizado con exito";
+    }
+
+
 }

@@ -1,4 +1,5 @@
 package com.example.apache.entities;
+import com.example.apache.entities.enums.Enum_RoleName;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 
@@ -22,10 +23,8 @@ public class Employee {
     @JsonBackReference(value = "employee-profile")
     private Profile profile;
 
-    @ManyToOne
-    @JsonBackReference(value = "employee-role")
-    @JoinColumn(name = "RoleName_id")
-    private RoleName roleName;
+    @Column(name = "roleName")
+    private Enum_RoleName roleName;
 
     @ManyToOne
     @JsonBackReference(value = "employee-enterprise")
@@ -46,7 +45,7 @@ public class Employee {
 
     }
 
-    public Employee(Long id, String email, Profile profile, RoleName roleName, Enterprise enterprise, List<Transaction> transaction, LocalDate createdAt, LocalDate updatedAt) {
+    public Employee(Long id, String email, Profile profile, Enum_RoleName roleName, Enterprise enterprise, List<Transaction> transaction, LocalDate createdAt, LocalDate updatedAt) {
         this.id = id;
         this.email = email;
         this.profile = profile;
@@ -69,7 +68,7 @@ public class Employee {
         return profile;
     }
 
-    public RoleName getRoleName() {
+    public Enum_RoleName getRoleName() {
         return roleName;
     }
 
@@ -101,7 +100,7 @@ public class Employee {
         this.profile = profile;
     }
 
-    public void setRoleName(RoleName roleName) {
+    public void setRoleName(Enum_RoleName roleName) {
         this.roleName = roleName;
     }
 

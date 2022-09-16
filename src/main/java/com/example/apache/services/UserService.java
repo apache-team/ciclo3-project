@@ -1,9 +1,12 @@
 package com.example.apache.services;
 
 import com.example.apache.entities.User;
+import com.example.apache.exceptions.UserNotFoundException;
 import com.example.apache.repositories.UserRepository;
 import org.springframework.stereotype.Service;
+import org.springframework.util.StringUtils;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -42,5 +45,31 @@ public class UserService {
                     return repository.save(newUser);
                 }));
     }
+
+    public void updateUser(User newData, long id) {
+        User user = repository.findById(id).orElseThrow(UserNotFoundException::new);
+
+        boolean needUpdate = false;
+
+        if (StringUtils.hasLength(newData.getFullName())) {
+            user.setFullName(newData.getFullName());
+            needUpdate = true;
+        }
+
+        if (StringUtils.hasLength(newData.getNameUser())) {
+            user.setNameUser(newData.getNameUser());
+            needUpdate = true;
+        }
+
+        if (newData.getProfile() != user.getProfile()) {
+            user.setProfile(newData.getProfile());
+            needUpdate = true;
+        }
+
+        if (needUpdate) {
+            repository.save(user);
+        }
+    }
+
 
 }

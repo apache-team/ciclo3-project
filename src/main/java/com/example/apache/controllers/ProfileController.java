@@ -15,30 +15,39 @@ public class ProfileController {
         this.service = service;
     }
 
-    @GetMapping("/profiles")
+    @GetMapping("/profile")
     public List<Profile> ProfileList(){
         return this.service.getProfileList();
     }
 
-    @PostMapping(value = "/profiles", consumes = {"application/json"})
+    @PostMapping(value = "/profile", consumes = {"application/json"})
     public Profile createProfile(@RequestBody Profile profile){
         return this.service.createProfile(profile);
     }
 
-    @GetMapping("/profiles/{id}")
+    @GetMapping("/profile/{id}")
     public Optional<Profile> GetId(@PathVariable("id") Long id){
         return this.service.getId(id);
     }
 
-    @DeleteMapping("/profiles/{id}")
+    @DeleteMapping("/profile/{id}")
     public String DeleteId(@PathVariable("id") Long id){
 
         this.service.deleteId(id);
         return "Registro eliminado con exito";
     }
 
-    @PutMapping("/profiles/{id}")
+    @PutMapping("/profile/{id}")
     Optional<Profile> replaceUser(@RequestBody Profile newData, @PathVariable Long id) {
         return this.service.updateID(newData,id);
     }
+
+    @PatchMapping(
+            path = "/profile/{id}",
+            consumes = {"application/json"})
+    public String update(@RequestBody Profile newData, @PathVariable("id") Long id) {
+        this.service.updateProfile(newData, id);
+        return "Registro actualizado con exito";
+    }
+
 }
