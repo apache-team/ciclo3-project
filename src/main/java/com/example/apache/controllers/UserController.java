@@ -2,6 +2,8 @@ package com.example.apache.controllers;
 
 import com.example.apache.entities.User;
 import com.example.apache.services.UserService;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;

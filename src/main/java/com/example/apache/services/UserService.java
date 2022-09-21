@@ -2,6 +2,7 @@ package com.example.apache.services;
 
 import com.example.apache.entities.User;
 import com.example.apache.repositories.UserRepository;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -16,7 +17,7 @@ public class UserService {
     }
 
     public List<User> getUserList(){
-        return this.repository.findAll();
+        return this.repository.findAll(Sort.by("id"));
     }
 
     public User createUser(User newUser){
@@ -43,4 +44,12 @@ public class UserService {
                 }));
     }
 
+    public int save(User u){
+        int res=0;
+        User user = this.repository.save(u);
+        if(!user.equals(null)){
+            res = 1;
+        }
+        return res;
+    }
 }

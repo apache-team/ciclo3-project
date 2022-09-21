@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaft.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css">
+    <script src="https://kit.fontawesome.com/bc84066a73.js" crossorigin="anonymous"></script>
+</head>
+<body>
+<div class="container mt-4">
+    <a th:href="@{/new}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Crear</a>
+    <table class="table" id="data">
+        <thead>
+        <tr>
+            <th>id</th>
+            <th>Nombre</th>
+            <th>Usuario</th>
+            <th>Opciones</th>
+        </tr>
+        </thead>
+
+        <tbody>
+        <tr th:each="usuario:${usuarios}">
+            <td th:text="${usuario.id}"></td>
+            <td th:text="${usuario.fullName}"></td>
+            <td th:text="${usuario.nameUser}"></td>
+            <td>
+                <a th:href="@{/edit/}+${usuario.id}" class="btn btn-warning btn-sm" style="color: white"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a th:onclick="Delete([[${usuario.id}]])" class="btn btn-danger btn-sm"><i class="fa-solid fa-trash"></i></a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI=" crossorigin="anonymous"></script>
+<script src="funciones.js"></script>
+</body>
+</html>
