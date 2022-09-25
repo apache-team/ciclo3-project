@@ -1,0 +1,48 @@
+<div th:fragment="manager">
+    <div class="mx-3">
+        <div th:switch="${title}">
+            <a th:case="'Transacciones'" class="btn btn-secundary mt-3 align-items-center justify-content-center" href="../create_transaction">
+                <p class="text-light my-0">Nuevo</p>
+            </a>
+            <a th:case="'Usuarios'" class="btn btn-secundary mt-3 align-items-center justify-content-center" href="../create_user">
+                <p class="text-light my-0">Nuevo</p>
+            </a>
+            <a th:case="'Empresas'" class="btn btn-secundary mt-3 align-items-center justify-content-center" href="../create_enterprise">
+                <p class="text-light my-0">Nuevo</p>
+            </a>
+        </div>
+        <hr>
+        <table class="table">
+            <thead th:switch="${title}">
+            <tr th:case="'Transacciones'">
+                <th scope="col">#</th>
+                <th scope="col">Concepto</th>
+                <th scope="col">Monto</th>
+                <th scope="col">Fecha</th>
+                <th scope="col">Usuario</th>
+            </tr>
+            <tr th:case="'Usuarios'">
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Teléfono</th>
+            </tr>
+            <tr th:case="'Empresas'">
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">Dirección</th>
+                <th scope="col">Teléfono</th>
+            </tr>
+            </thead>
+        </table>
+    </div>
+</div>
+
+<div th:fragment="create">
+    <div class="mx-3">
+        <form>
+            
+        </form>
+
+    </div>
+</div>
