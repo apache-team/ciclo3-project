@@ -38,12 +38,23 @@ public class TransactionService {
                     transaction.setAmount(newData.getAmount());
                     transaction.setCreatedAt(newData.getCreatedAt());
                     transaction.setUpdatedAt(newData.getUpdatedAt());
-                    transaction.setEmployee(newData.getEmployee());
-                    transaction.setEnterprise(newData.getEnterprise());
+//                    transaction.setEmployee(newData.getEmployee());
+//                    transaction.setEnterprise(newData.getEnterprise());
                     return repository.save(transaction);
                 }).orElseGet(() -> {
                     newData.setId(id);
                     return repository.save(newData);
                 }));
+    }
+
+    public int save(Transaction u){
+        int res=0;
+
+        Transaction transaction = this.repository.save(u);
+
+        if(!transaction.equals(null)){
+            res = 1;
+        }
+        return res;
     }
 }

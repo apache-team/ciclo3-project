@@ -23,7 +23,7 @@ public class UserController {
         return this.services.getUserList();
     }
 
-    @PostMapping("/users")
+    @PostMapping(value = "/users", consumes = {"application/json"})
     public User createUser(@RequestBody User user){
         return this.services.createUser(user);
     }

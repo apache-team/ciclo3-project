@@ -1,11 +1,11 @@
 <!DOCTYPE html>
 <html xmlns:th="http://thymeleaft.org" lang="en">
-<head th:replace="base :: head">
+<head th:replace="baseEdit :: head">
 </head>
 <body>
 
 <main class="d-flex flex-nowrap">
-    <div th:replace="base :: nav"></div>
+    <div th:replace="baseEdit :: nav"></div>
 
 
     <div class="container mt-4">
@@ -13,7 +13,7 @@
             <form th:action="@{/save}" th:object=${usuario} method="POST">
                 <div class="card">
                     <div class="card-header">
-                        <h3>Modulo Persona</h3>
+                        <h3>Editar módulo usuarios</h3>
                     </div>
                     <div class="card-body">
                         <div class="form-group">

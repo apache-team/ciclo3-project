@@ -1,6 +1,7 @@
 package com.example.apache.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -19,19 +20,21 @@ public class Transaction {
     @Column(name = "amount")
     private Float amount;
 
-    @ManyToOne
-    @JoinColumn(name = "employee_id")
-    @JsonBackReference(value = "employee-transaction")
-    private Employee employee;
+//    @ManyToOne
+//    @JoinColumn(name = "employee_id")
+//    @JsonBackReference(value = "employee-transaction")
+//    private Employee employee;
+//
+//    @ManyToOne
+//    @JoinColumn(name = "enterprise_id")
+//    @JsonBackReference(value = "enterprise-transaction")
+//    private Enterprise enterprise;
 
-    @ManyToOne
-    @JoinColumn(name = "enterprise_id")
-    @JsonBackReference(value = "enterprise-transaction")
-    private Enterprise enterprise;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "createdAt")
     private LocalDate createdAt;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "updatedAt")
     private LocalDate updatedAt;
 
@@ -43,8 +46,8 @@ public class Transaction {
         this.id = id;
         this.concept = concept;
         this.amount = amount;
-        this.employee = employee;
-        this.enterprise = enterprise;
+//        this.employee = employee;
+//        this.enterprise = enterprise;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -61,13 +64,13 @@ public class Transaction {
         return amount;
     }
 
-    public Employee getEmployee() {
-        return employee;
-    }
-
-    public Enterprise getEnterprise() {
-        return enterprise;
-    }
+//    public Employee getEmployee() {
+//        return employee;
+//    }
+//
+//    public Enterprise getEnterprise() {
+//        return enterprise;
+//    }
 
     public LocalDate getCreatedAt() {
         return createdAt;
@@ -89,13 +92,13 @@ public class Transaction {
         this.amount = amount;
     }
 
-    public void setEmployee(Employee employee) {
-        this.employee = employee;
-    }
-
-    public void setEnterprise(Enterprise enterprise) {
-        this.enterprise = enterprise;
-    }
+//    public void setEmployee(Employee employee) {
+//        this.employee = employee;
+//    }
+//
+//    public void setEnterprise(Enterprise enterprise) {
+//        this.enterprise = enterprise;
+//    }
 
     public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;

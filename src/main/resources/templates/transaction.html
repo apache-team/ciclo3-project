@@ -12,28 +12,32 @@
         <div class="col-sm-12">
             <div class="card">
                 <div class="card-header">
-                    <h3>Listado de usuarios</h3>
+                    <h3>Listado de transacciones</h3>
                 </div>
                 <div class="card-body">
                     <table class="table" id="data">
                         <thead>
                         <tr>
                             <th>id</th>
-                            <th>Nombre</th>
-                            <th>Usuario</th>
+                            <th>Concepto</th>
+                            <th>Valor</th>
+                            <th>Creación</th>
+                            <th>Modificación</th>
                             <th>Opciones</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr th:each="usuario:${usuarios}">
-                            <td th:text="${usuario.id}"></td>
-                            <td th:text="${usuario.fullName}"></td>
-                            <td th:text="${usuario.nameUser}"></td>
+                        <tr th:each="transaction:${transactions}">
+                            <td th:text="${transaction.id}"></td>
+                            <td th:text="${transaction.concept}"></td>
+                            <td th:text="${transaction.amount}"></td>
+                            <td th:text="${transaction.createdAt}"></td>
+                            <td th:text="${transaction.updatedAt}"></td>
                             <td>
-                                <a th:href="@{/edit/}+${usuario.id}" class="btn btn-warning btn-sm"
+                                <a th:href="@{/editTransaction/}+${transaction.id}" class="btn btn-warning btn-sm"
                                    style="color: white"><i
                                         class="fa-solid fa-pen-to-square"></i></a>
-                                <a th:onclick="Delete([[${usuario.id}]])" class="btn btn-danger btn-sm"><i
+                                <a th:onclick="DeleteTransaction([[${transaction.id}]])" class="btn btn-danger btn-sm"><i
                                         class="fa-solid fa-trash"></i></a>
                             </td>
                         </tr>
@@ -42,7 +46,7 @@
                 </div>
 
                 <div class="card-footer">
-                    <a th:href="@{/new}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Crear usuario</a>
+                    <a th:href="@{/newTransaction}" class="btn btn-primary"><i class="fa-solid fa-plus"></i> Crear transacción</a>
                 </div>
             </div>
         </div>
@@ -54,6 +58,6 @@
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://code.jquery.com/jquery-3.6.1.js" integrity="sha256-3zlB5s2uwoUzrXK3BT7AX3FyvojsraNFxCc2vC/7pNI="
         crossorigin="anonymous"></script>
-<script src="js/funciones.js"></script>
+<script src="js/transaction.js"></script>
 </body>
 </html>

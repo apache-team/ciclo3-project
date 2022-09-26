@@ -30,9 +30,9 @@ public class Enterprise {
     @JsonManagedReference(value = "employee-enterprise")
     private List<Employee> employee;
 
-    @OneToMany(mappedBy = "enterprise", cascade = CascadeType.ALL)
-    @JsonManagedReference(value = "enterprise-transaction")
-    private List<Transaction> transaction;
+//    @OneToMany(mappedBy = "enterprise", cascade = CascadeType.ALL)
+//    @JsonManagedReference(value = "enterprise-transaction")
+//    private List<Transaction> transaction;
 
     @Column(name = "createdAt")
     private LocalDate createdAt;
@@ -51,7 +51,7 @@ public class Enterprise {
         this.phone = phone;
         this.address = address;
         this.employee = employee;
-        this.transaction = transaction;
+//        this.transaction = transaction;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
@@ -80,9 +80,9 @@ public class Enterprise {
         return employee;
     }
 
-    public List<Transaction> getTransaction() {
-        return transaction;
-    }
+//    public List<Transaction> getTransaction() {
+//        return transaction;
+//    }
 
     public LocalDate getCreatedAt() {
         return createdAt;
@@ -116,9 +116,9 @@ public class Enterprise {
         this.employee = employee;
     }
 
-    public void setTransaction(List<Transaction> transaction) {
-        this.transaction = transaction;
-    }
+//    public void setTransaction(List<Transaction> transaction) {
+//        this.transaction = transaction;
+//    }
 
     public void setCreatedAt(LocalDate createdAt) {
         this.createdAt = createdAt;
