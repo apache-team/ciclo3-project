@@ -34,6 +34,11 @@ public class FrontController {
 
   @GetMapping("/")
   public String index(Model model, @AuthenticationPrincipal OidcUser principal) {
+    if(principal != null) {//permite que este codigo se ejecute despues de inciar sesión
+      // System.out.println(principal.getclaims());//getclaims() obtine la información que princpal puede capturar de la base de datos o crear el usuario en caso de que no exista
+      User user =  this.userService.getOrCreateUser(principal.getClaims()); //se requiere enviar al Servicio el getclaims() para que encuentre a este usuario en la base de datos  y si no existe que lo crea
+      model.addAttribute("user", user);//se pasan estos datos al Modelo para presentarlos en el Front
+    }
     return "home";
   }
 

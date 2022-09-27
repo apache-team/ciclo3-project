@@ -13,11 +13,15 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "nameUser")
-    private String nameUser;
+    @Column(name = "nickname")
+    private String nickname;
 
-    @Column(name = "fullName")
-    private String fullName;
+    @Column(name = "email")
+    private String email;
+
+    @Column(name="auth0Id", unique = true)
+    private String auth0Id;
+
 
     @OneToOne(mappedBy = "user", cascade = CascadeType.ALL)
     @JsonBackReference(value = "user-profile")
@@ -26,24 +30,28 @@ public class User {
     public User(){
     }
 
-    public User(Long id, String nameUser, String fullName, Profile profile) {
+    public User(String nickname, String email, String auth0Id) {
         this.id = id;
-        this.nameUser = nameUser;
-        this.fullName = fullName;
-        this.profile = profile;
+        this.nickname = nickname;
+        this.email = email;
+        this.auth0Id = auth0Id;
+    }
+
+    public String getNickname() {
+        return nickname;
+    }
+
+    public void setNickname(String nickname) {
+        this.nickname = nickname;
     }
 
     public Long getId() {
         return id;
     }
 
-    public String getNameUser() {
-        return nameUser;
-    }
 
-    public String getFullName() {
-            return fullName;
-    }
+
+
 
     public Profile getProfile() {
         return profile;
@@ -53,17 +61,25 @@ public class User {
         this.id = id;
     }
 
-    public void setNameUser(String nameUser) {
-        this.nameUser = nameUser;
-    }
 
-    public void setFullName(String fullName) {
-        this.fullName = fullName;
-    }
 
     public void setProfile(Profile profile) {
         this.profile = profile;
     }
 
+    public String getEmail() {
+        return email;
+    }
 
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAuth0Id() {
+        return auth0Id;
+    }
+
+    public void setAuth0Id(String auth0Id) {
+        this.auth0Id = auth0Id;
+    }
 }

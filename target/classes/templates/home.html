@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
     <head>
         <title>Home - Financer</title>
         <meta charset="UTF-8" />
@@ -9,12 +9,26 @@
     </head>
     <body>
         <main>
-            <div class="d-flex align-items-center flex-column px-2 py-4 my-4">
+            <div sec:authorize="!isAuthenticated()" class="d-flex align-items-center flex-column px-2 py-4 my-4">
                 <div class="w-50">
                     <img src="img/logoHome.png" alt="Financer" class="w-100"/>
                 </div>
                 <h3 class="my-5">
-                    Bienvenida al usuario y descripción del sitio web.
+                    Bienvenida a la aplicación Financer
+                </h3>
+                <div class="d-flex justify-content-center col-md-4 flex-row">
+                    <a class="d-flex justify-content-center align-items-center btn btn-primary btn-square-md" th:href="@{/oauth2/authorization/auth0}">
+                        <h5>Ingresar</h5>
+                    </a>
+
+                </div>
+            </div>
+            <div sec:authorize="isAuthenticated()" class="d-flex align-items-center flex-column px-2 py-4 my-4">
+                <div class="w-50">
+                    <img src="img/logoHome.png" alt="Financer" class="w-100"/>
+                </div>
+                <h3 class="my-5" th:text="'Bienvenida al usuario, ' + ${user.getEmail()}">
+
                 </h3>
                 <div class="d-flex justify-content-center col-md-6 flex-row">
                         <a class="d-flex justify-content-center align-items-center btn btn-primary btn-square-md" href="manager_transaction">
