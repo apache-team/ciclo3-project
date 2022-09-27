@@ -56,10 +56,10 @@ public class UserService {
         String email = (String) userData.get("email"); //Permite buscar en la bd al usuario creado
         User user = findUserByEmail(email);
         if(user==null){//si no esta el usuario lo crea con estos datos  y lo devuelve
-            String nickname = (String) userData.get("nickname");//elementos del Map que captua getcalims(
+            String name = (String) userData.get("name");//elementos del Map que captua getcalims(
             String auth0Id = (String) userData.get("sub");
 
-            User newUser = new User(nickname=nickname, email=email,auth0Id=auth0Id);
+            User newUser = new User(name=name, email=email,auth0Id=auth0Id);
             return createUser(newUser);//se pasa el nuevo usuario al servicio para que lo cree
         }
         //System.out.println(user.getEmail());//probar que si consulta al usuario por email
