@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 @Controller
 public class FrontController {
@@ -111,5 +112,19 @@ public class FrontController {
     transactionService.deleteId(id);
     return "redirect:/manager_transaction";
   }
+
+  @GetMapping("/editTransaction/{id}")
+  public String editar(@PathVariable long id, Model model, Map<String, Object>variables){
+    variables.put("title", "Transacciones");
+    variables.put("main_title", "Ingresos y Gastos");
+    variables.put("img_name", "money.png");
+    variables.put("key", "create");
+
+    Optional<Transaction> transaction = transactionService.getId(id);
+    model.addAttribute("transaction", transaction);
+    return "edit_transaction";
+  }
+
+
 }
 

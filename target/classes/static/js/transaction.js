@@ -11,7 +11,7 @@ function DeleteTransaction(id) {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: "/deleteTransaction/" + id,
+                url: "/delete_transaction/" + id,
                 success: function (res) {
                     $("#data").load(window.location + " #data");
                 }

@@ -12,15 +12,15 @@
             </a>
         </div>
         <hr>
-        <table th:switch="${title}" class="table">
+        <table th:switch="${title}" class="table" id="data">
             <div  th:case="'Transacciones'">
                 <thead>
                 <tr>
                     <th>#</th>
                     <th>Concepto</th>
                     <th>Monto</th>
-                    <th>Fecha</th>
-                    <th>Usuario</th>
+                    <th>Creación</th>
+                    <th>Actualización</th>
                     <th>Opciones</th>
                 </tr>
                 </thead>
@@ -29,13 +29,13 @@
                     <td th:text="${transaction.id}"></td>
                     <td th:text="${transaction.concept}"></td>
                     <td th:text="${transaction.amount}"></td>
-                    <td th:text="${transaction.updatedAt}"></td>
                     <td th:text="${transaction.createdAt}"></td>
+                    <td th:text="${transaction.updatedAt}"></td>
                     <td>
                         <a th:href="@{/editTransaction/} + ${transaction.id}" class="btn btn-warning btn-sm"
                            style="color: white"><i
                                 class="fa-solid fa-pen-to-square"></i></a>
-                        <a th:onclick="DeleteTransaction([${transaction.id}])" class="btn btn-danger btn-sm"><i
+                        <a th:onclick="DeleteTransaction([[${transaction.id}]])"class="btn btn-danger btn-sm"><i
                                 class="fa-solid fa-trash"></i></a>
                     </td>
                 </tr>
@@ -99,17 +99,24 @@
 <div th:fragment="create" th:switch="${title}" class="d-flex justify-content-center">
     <div th:case="'Transacciones'" class="d-flex flex-column mx-3 col-md-6">
         <form th:action="@{/save_transaction}" th:object="${transaction}" method="post">
+            <div class="form-group">
+                <input th:field="*{id}" type="text" class="form-control" hidden>
+            </div>
             <div class="d-flex flex-row align-items-center my-4 justify-content-between">
                 <label for="inputMonto" class="form-label mx-2 fw-bold">Monto</label>
                 <input th:field="*{amount}" type="number" class="form-control w-75" id="inputMonto" placeholder="$">
             </div>
             <div class="d-flex flex-row align-items-center my-4 justify-content-between">
                 <label for="inputConcepto" class="form-label mx-2 fw-bold">Concepto</label>
-                <textarea th:field="*{concept}" class="form-control w-75" id="inputConcepto" rows="3"></textarea>
+                <textarea th:field="*{concept}" class="form-control w-75" id="inputConcepto" rows="2"></textarea>
             </div>
             <div class="d-flex flex-row align-items-center my-4 justify-content-between">
                 <label for="inputFecha" class="form-label mx-2 fw-bold">Fecha</label>
                 <input th:field="*{createdAt}" type="date" class="form-control w-75" id="inputFecha">
+            </div>
+            <div class="d-flex flex-row align-items-center my-4 justify-content-between">
+                <label for="inputFecha" class="form-label mx-2 fw-bold">Fecha</label>
+                <input th:field="*{updatedAt}" type="date" class="form-control w-75" id="inputUpdate">
             </div>
             <div class="d-flex flex-row align-items-center my-4 justify-content-center">
                 <button type="submit"  value="Guardar" class="btn btn-secundary text-light fw-bold">Ingresar</button>
@@ -158,3 +165,5 @@
         </form>
     </div>
 </div>
+
+
