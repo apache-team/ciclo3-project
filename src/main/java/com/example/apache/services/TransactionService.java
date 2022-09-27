@@ -84,4 +84,14 @@ public class TransactionService {
         }
     }
 
+    public int save(Transaction u){
+        int res=0;
+
+        Transaction transaction = this.repository.save(u);
+
+        if(!transaction.equals(null)){
+            res = 1;
+        }
+        return res;
+    }
 }
