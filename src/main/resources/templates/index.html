@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
     <head>
         <meta charset="UTF-8" />
         <meta
@@ -21,7 +21,15 @@
     </head>
     <body>
         <main>
-            <div class="mx-auto my-9 text-center">
+            <div sec:authorize="!isAuthenticated()" class="mx-auto my-9 text-center">
+                <img src="img/logo_name.png" alt="Financer" height="250px" />
+                <div class="d-flex gap-3 justify-content-center">
+                    <button type="button" class="btn btn-primary btn-lg">
+                            <p th:href="@{/oauth2/authorization/auth0}" class="text-btn"> Iniciar sesión </p>
+                    </button>
+                </div>
+            </div>
+            <div sec:authorize="isAuthenticated()" class="mx-auto my-9 text-center">
                 <img src="img/logo_name.png" alt="Financer" height="250px" />
                 <h2 class="my-4">
                     Bienvenida al usuario y descripción del sitio web.
