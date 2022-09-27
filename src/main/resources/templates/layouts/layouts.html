@@ -98,7 +98,7 @@
 
 <div th:fragment="create" th:switch="${title}" class="d-flex justify-content-center">
     <div th:case="'Transacciones'" class="d-flex flex-column mx-3 col-md-6">
-        <form th:action="@{/saveTransaction}" th:object=${transaction} method="POST">
+        <form th:action="@{/save_transaction}" th:object="${transaction}" method="post">
             <div class="d-flex flex-row align-items-center my-4 justify-content-between">
                 <label for="inputMonto" class="form-label mx-2 fw-bold">Monto</label>
                 <input th:field="*{amount}" type="number" class="form-control w-75" id="inputMonto" placeholder="$">
@@ -117,20 +117,20 @@
         </form>
     </div>
     <div th:case="'Usuarios'" class="d-flex flex-column mx-3 col-md-6">
-        <form th:action="@{/employee}" th:object=${employee} method="POST">
+        <form>
             <div class="d-flex flex-row align-items-center my-4 justify-content-between">
                 <label for="inputName" class="form-label mx-2 fw-bold">Nombre</label>
-                <input th:field="*{name}" type="text" class="form-control w-75" id="inputName">
+                <input type="text" class="form-control w-75" id="inputName">
             </div>
             <div class="d-flex flex-row align-items-center my-4 justify-content-between">
                 <label for="inputEmail" class="form-label mx-2 fw-bold">Correo</label>
-                <input th:field="*{email}" type="email" class="form-control w-75" id="inputEmail">
+                <input type="email" class="form-control w-75" id="inputEmail">
             </div>
             <div class="d-flex flex-row align-items-center my-4 justify-content-between">
                 <label for="inputRol" class="form-label mx-2 fw-bold">Rol</label>
-                <select th:field="*{rolName}" id="inputRol" class="form-control w-75">
-                    <option th:value="admin" th:text="Administrador"></option>
-                    <option th:value="operativo" th:text="Operativo"></option>
+                <select id="inputRol" class="form-control w-75">
+                    <option value="admin">Administrador</option>
+                    <option value="operativo">Operativo</option>
                 </select>
             </div>
             <div class="d-flex flex-row align-items-center my-4 justify-content-center">

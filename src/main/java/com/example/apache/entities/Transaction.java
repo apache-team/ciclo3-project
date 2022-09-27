@@ -1,6 +1,7 @@
 package com.example.apache.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.time.LocalDate;
@@ -29,12 +30,12 @@ public class Transaction {
     @JsonBackReference(value = "enterprise-transaction")
     private Enterprise enterprise;
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "createdAt")
     private LocalDate createdAt;
-
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     @Column(name = "updatedAt")
     private LocalDate updatedAt;
-
     public Transaction(){
 
     }
