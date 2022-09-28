@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--
+<html lang="en" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="sidebar">
+-->
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="head">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="shortcut icon" href="img/favicon.ico" type="image/x-icon">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+    <link rel="stylesheet" href="css/template.css">
+    <script src="https://kit.fontawesome.com/bc84066a73.js" crossorigin="anonymous"></script>
+    <title th:text="${title} + ' – Financer'"></title>
+</head>
+<body>
+<nav th:fragment="sidebar" id="sidebarMenu" class="col-md-3 col-lg-2 d-md-block sidebar collapse">
+    <div class="sidebar-sticky">
+        <a href="../" class="nav-link d-flex align-items-center justify-content-center mb-5 mt-4 text-decoration-none">
+            <img src="../img/logoSidebar.png" class="logo">
+        </a>
+        <ul class="nav flex-column align-items-center">
+            <li class="nav-item">
+                <a th:if="${main_title} == 'Ingresos y Gastos'" class="nav-link btn btn-primary mb-4 align-items-center justify-content-center active" href="../manager_transaction">
+                    <p class="my-0">Ingresos y egresos</p>
+                </a>
+                <a th:unless="${main_title} == 'Ingresos y Gastos'" class="nav-link btn btn-primary mb-4 align-items-center justify-content-center" href="../manager_transaction">
+                    <p class="my-0">Ingresos y egresos</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a th:if="${main_title} == 'Usuarios'" class="nav-link btn btn-primary mb-4 align-items-center justify-content-center active" href="../manager_user">
+                    <p class="my-0">Usuarios</p>
+                </a>
+                <a th:unless="${main_title} == 'Usuarios'" class="nav-link btn btn-primary mb-4 align-items-center justify-content-center" href="../manager_user">
+                    <p class="my-0">Usuarios</p>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a th:if="${main_title} == 'Empresas'" class="nav-link btn btn-primary mb-4 align-items-center justify-content-center active" href="../manager_enterprise">
+                    <p class="my-0">Empresas</p>
+                </a>
+                <a th:unless="${main_title} == 'Empresas'" class="nav-link btn btn-primary mb-4 align-items-center justify-content-center" href="../manager_enterprise">
+                    <p class="my-0">Empresas</p>
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
+<main th:fragment="main" class="col-md-9 ms-sm-auto col-lg-10 px-md-4" role="main">
+    <div th:fragment="header_main">
+        <h1 class="ml-3 mt-5" th:text="'Sistema de Gestión de ' + ${main_title}"></h1>
+        <hr>
+    </div>
+    <div th:fragment="card" class="col-md-12 h-75">
+        <div class="board h-75 text-bg-light"> <!-- Tamaño del tablero se deberá elegir según tipo de dispositivo -->
+            <div class="header-board m-0 border-bottom-0 d-flex align-items-center flex-row">
+                <img th:src="@{'img/' + ${img_name}}" class="mx-2" height="40px">
+                <h2 class="text-light " th:text="${main_title}"></h2>
+            </div>
+            <div th:replace="layouts/layouts :: ${key}">
+
+            </div>
+        </div>
+    </div>
+</main>
+
+<footer th:fragmant="footer" class="d-flex align-items-end justify-content-end fixed-bottom me-3">
+    &copy;2022 Todos los derechos reservados
+</footer>
+
+</body>
+</html>

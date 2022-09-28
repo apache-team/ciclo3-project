@@ -1,0 +1,31 @@
+.btn-primary {
+  color: black;
+  background-color: #E7E6E6;
+  margin-left: 15px;
+  margin-right: 15px;
+  /*
+  width: 250px;
+  height: 250px;
+  */
+  border-color: #8B8A8A;
+  border-width: 2px;
+  border-radius: 20px;
+}
+
+.btn-primary:hover {
+  color: white;
+  background-color: #B4455F !important;
+  border-color: #B4455F !important;
+}
+
+.text-btn {
+  word-wrap: normal;
+  width: 200px;
+}
+
+.btn-square-md {
+  width: 12rem !important;
+  height: 12rem !important;
+  word-wrap: normal;
+}
+

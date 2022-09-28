@@ -1,0 +1,169 @@
+<div th:fragment="manager">
+    <div class="mx-3">
+        <div th:switch="${title}">
+            <a th:case="'Transacciones'" class="btn btn-secundary mt-3 align-items-center justify-content-center" href="../create_transaction">
+                <p class="text-light my-0">Nuevo</p>
+            </a>
+            <a th:case="'Usuarios'" class="btn btn-secundary mt-3 align-items-center justify-content-center" href="../create_user">
+                <p class="text-light my-0">Nuevo</p>
+            </a>
+            <a th:case="'Empresas'" class="btn btn-secundary mt-3 align-items-center justify-content-center" href="../create_enterprise">
+                <p class="text-light my-0">Nuevo</p>
+            </a>
+        </div>
+        <hr>
+        <table th:switch="${title}" class="table" id="data">
+            <div  th:case="'Transacciones'">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Concepto</th>
+                    <th>Monto</th>
+                    <th>Creación</th>
+                    <th>Actualización</th>
+                    <th>Opciones</th>
+                </tr>
+                </thead>
+                <tbody th:each="transaction : ${transactionList}">
+                <tr>
+                    <td th:text="${transaction.id}"></td>
+                    <td th:text="${transaction.concept}"></td>
+                    <td th:text="${transaction.amount}"></td>
+                    <td th:text="${transaction.createdAt}"></td>
+                    <td th:text="${transaction.updatedAt}"></td>
+                    <td>
+                        <a th:href="@{/editTransaction/} + ${transaction.id}" class="btn btn-warning btn-sm"
+                           style="color: white"><i
+                                class="fa-solid fa-pen-to-square"></i></a>
+                        <a th:onclick="DeleteTransaction([[${transaction.id}]])"class="btn btn-danger btn-sm"><i
+                                class="fa-solid fa-trash"></i></a>
+                    </td>
+                </tr>
+                </tbody>
+            </div>
+            <div th:case="'Usuarios'">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Teléfono</th>
+                    <th>Opciones</th>
+                </tr>
+                </thead>
+                <tbody th:each="employee : ${employeeList}">
+                <tr>
+                    <td th:text="${employee.id}"></td>
+                    <td th:text="${employee.roleName}"></td>
+                    <td th:text="${employee.email}"></td>
+                    <td th:text="${employee.updatedAt}"></td>
+                    <td>
+                        <a th:href="@{/editUser/}+${employee.id}" class="btn btn-warning btn-sm"
+                           style="color: white"><i
+                                class="fa-solid fa-pen-to-square"></i></a>
+                        <a th:onclick="DeleteUser([${employee.id}])" class="btn btn-danger btn-sm"><i
+                                class="fa-solid fa-trash"></i></a>
+                    </td>                </tr>
+                </tbody>
+            </div>
+            <div th:case="'Empresas'">
+                <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nombre</th>
+                    <th>Dirección</th>
+                    <th>Teléfono</th>
+                    <th>Opciones</th>
+                </tr>
+                </thead>
+                <tbody th:each="enterprise : ${enterpriseList}">
+                <tr>
+                    <td th:text="${enterprise.id}"></td>
+                    <td th:text="${enterprise.name}"></td>
+                    <td th:text="${enterprise.address}"></td>
+                    <td th:text="${enterprise.document}"></td>
+                    <td>
+                        <a th:href="@{/editEnterprise/}+${enterprise.id}" class="btn btn-warning btn-sm"
+                           style="color: white"><i
+                                class="fa-solid fa-pen-to-square"></i></a>
+                        <a th:onclick="DeleteEnterprise([[${enterprise.id}]])" class="btn btn-danger btn-sm"><i
+                                class="fa-solid fa-trash"></i></a>
+                    </td>
+                </tr>
+                </tbody>
+            </div>
+        </table>
+    </div>
+</div>
+
+<div th:fragment="create" th:switch="${title}" class="d-flex justify-content-center">
+    <div th:case="'Transacciones'" class="d-flex flex-column mx-3 col-md-6">
+        <form th:action="@{/save_transaction}" th:object="${transaction}" method="post">
+            <div class="form-group">
+                <input th:field="*{id}" type="text" class="form-control" hidden>
+            </div>
+            <div class="d-flex flex-row align-items-center my-4 justify-content-between">
+                <label for="inputMonto" class="form-label mx-2 fw-bold">Monto</label>
+                <input th:field="*{amount}" type="number" class="form-control w-75" id="inputMonto" placeholder="$">
+            </div>
+            <div class="d-flex flex-row align-items-center my-4 justify-content-between">
+                <label for="inputConcepto" class="form-label mx-2 fw-bold">Concepto</label>
+                <textarea th:field="*{concept}" class="form-control w-75" id="inputConcepto" rows="2"></textarea>
+            </div>
+            <div class="d-flex flex-row align-items-center my-4 justify-content-between">
+                <label for="inputFecha" class="form-label mx-2 fw-bold">Fecha</label>
+                <input th:field="*{createdAt}" type="date" class="form-control w-75" id="inputFecha">
+            </div>
+            <div class="d-flex flex-row align-items-center my-4 justify-content-between">
+                <label for="inputFecha" class="form-label mx-2 fw-bold">Fecha</label>
+                <input th:field="*{updatedAt}" type="date" class="form-control w-75" id="inputUpdate">
+            </div>
+            <div class="d-flex flex-row align-items-center my-4 justify-content-center">
+                <button type="submit"  value="Guardar" class="btn btn-secundary text-light fw-bold">Ingresar</button>
+            </div>
+        </form>
+    </div>
+    <div th:case="'Usuarios'" class="d-flex flex-column mx-3 col-md-6">
+        <form>
+            <div class="d-flex flex-row align-items-center my-4 justify-content-between">
+                <label for="inputName" class="form-label mx-2 fw-bold">Nombre</label>
+                <input type="text" class="form-control w-75" id="inputName">
+            </div>
+            <div class="d-flex flex-row align-items-center my-4 justify-content-between">
+                <label for="inputEmail" class="form-label mx-2 fw-bold">Correo</label>
+                <input type="email" class="form-control w-75" id="inputEmail">
+            </div>
+            <div class="d-flex flex-row align-items-center my-4 justify-content-between">
+                <label for="inputRol" class="form-label mx-2 fw-bold">Rol</label>
+                <select id="inputRol" class="form-control w-75">
+                    <option value="admin">Administrador</option>
+                    <option value="operativo">Operativo</option>
+                </select>
+            </div>
+            <div class="d-flex flex-row align-items-center my-4 justify-content-center">
+                <button class="btn btn-secundary text-light fw-bold">Ingresar</button>
+            </div>
+        </form>
+    </div>
+    <div th:case="'Empresas'" class="d-flex flex-column mx-3 col-md-6">
+        <form>
+            <div class="d-flex flex-row align-items-center my-4 justify-content-between">
+                <label for="inputNameEnterprise" class="form-label mx-2 fw-bold">Nombre</label>
+                <input type="text" class="form-control w-75" id="inputNameEnterprise">
+            </div>
+            <div class="d-flex flex-row align-items-center my-4 justify-content-between">
+                <label for="inputAddress" class="form-label mx-2 fw-bold">Dirección</label>
+                <input type="email" class="form-control w-75" id="inputAddress">
+            </div>
+            <div class="d-flex flex-row align-items-center my-4 justify-content-between">
+                <label for="inputPhone" class="form-label mx-2 fw-bold">Teléfono</label>
+                <input type="tel" class="form-control w-75" id="inputPhone" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}">
+            </div>
+            <div class="d-flex flex-row align-items-center my-4 justify-content-center">
+                <button class="btn btn-secundary text-light fw-bold">Ingresar</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
